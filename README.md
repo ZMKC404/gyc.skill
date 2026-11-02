@@ -8,6 +8,11 @@ curl -fsSL https://raw.githubusercontent.com/ZMKC404/gyc.skill/main/install.sh |
 
 可选目标：`--zcode`（默认）/ `--claude` / `--codex` / `--all`。
 
+> raw.githubusercontent 被墙/重置的网络，用镜像行：
+> ```bash
+> curl -fsSL https://ghproxy.net/https://raw.githubusercontent.com/ZMKC404/gyc.skill/main/install.sh | bash
+> ```
+
 ## 这是什么
 
 - **导师定位**：不是语录机器人。基于他日报里的判断、实战细节（含原始数字与条目号出处）做诊断，每次回答附「下一步」最小动作，必要时用他的"会死人能倒闭"优先级主动指出你没问但更要紧的事。
