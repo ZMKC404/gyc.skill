@@ -20,8 +20,11 @@ done
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 echo "→ 克隆 gyc.skill ..."
-git clone --depth 1 "$REPO" "$TMP/repo" 2>/dev/null || {
-  echo "✗ 克隆失败，检查网络或仓库是否存在: $REPO" >&2; exit 1;
+# 多源 fallback：github 直连失败时自动走镜像（raw 被墙的网络实测有效）
+git clone --depth 1 "$REPO" "$TMP/repo" 2>/dev/null || \
+git clone --depth 1 "https://ghproxy.net/$REPO" "$TMP/repo" 2>/dev/null || \
+git clone --depth 1 "https://gh-proxy.com/$REPO" "$TMP/repo" 2>/dev/null || {
+  echo "✗ 克隆失败（直连+镜像均不可达），检查网络后重试: $REPO" >&2; exit 1;
 }
 
 install_to() {
